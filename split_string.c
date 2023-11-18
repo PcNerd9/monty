@@ -2,6 +2,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/**
+ * split_words - split a strings to array of words
+ * @strings: the string to split
+ *
+ * Return: an array of strings if sucess otherwise return NULL
+ */
 char **split_words(char *strings)
 {
 	int i, j, lenght = 0, number_of_words = 0, l = 0, k, m = 0;
@@ -19,7 +25,7 @@ char **split_words(char *strings)
 			lenght = 0;
 			number_of_words++;
 			for (j = i; strings[j] != ' ' && strings[j] != '\0'; j++)
-			       lenght++;
+				lenght++;
 			word = (char *)malloc(sizeof(char) * lenght + 1);
 			if (word == NULL)
 				return (NULL);
@@ -38,6 +44,13 @@ char **split_words(char *strings)
 	instructions[m] = NULL;
 	return (instructions);
 }
+
+/**
+ * free_strings - frees an array of strings
+ * @strings: the array of strings
+ *
+ * Return: nothing
+ */
 void free_strings(char **strings)
 {
 	int i = 0;
@@ -50,16 +63,24 @@ void free_strings(char **strings)
 			i++;
 		}
 		free(strings);
-	}	
+	}
 }
+
+/**
+ * number_of_args - compute the number of args in a array
+ * of strings
+ * @command: the command
+ *
+ * Return: the number computed
+ */
 int number_of_args(char **command)
 {
-        int number_args = 0;
+	int number_args = 0;
 
-        while (*command)
-        {
-                number_args++;
-                command++;
-        }
-        return (number_args);
+	while (*command)
+	{
+		number_args++;
+		command++;
+	}
+	return (number_args);
 }

@@ -1,12 +1,21 @@
 #include "monty.h"
 #include <stdlib.h>
-#include <stdio.h> 
+#include <stdio.h>
 
+/**
+ * push_f - push a value to the stack
+ * @stack: a pointer to the stack
+ * @line_number: the line number of the instruction
+ * @commands: the pointer to the instruction
+ *
+ * Return: nothing
+ */
 void push_f(stack_t **stack, unsigned int line_number, char **commands)
 {
 	stack_t *new_node;
 	int value;
 	int number_args = number_of_args(commands);
+
 	if (number_args != 2)
 	{
 		fprintf(stderr, "%d: usage: push integer\n", line_number);
@@ -36,17 +45,33 @@ void push_f(stack_t **stack, unsigned int line_number, char **commands)
 	}
 }
 
+/**
+ * pall_f - print all the value on the stack
+ * @stack: the pointer to the top of the stack
+ * @line_number: the line number of the instruction
+ *
+ * Return: nothing
+ */
 void pall_f(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;
 
 	tmp = *stack;
+	(void)line_number;
 	while (tmp)
 	{
 		fprintf(stdout, "%d\n", tmp->n);
 		tmp = tmp->next;
 	}
 }
+
+/**
+ * pint_f - print only the value on top of the stack
+ * @stack: a pointer to the top of the stack
+ * @line_number: the line number of the instruction
+ *
+ * Return: nothing
+ */
 void pint_f(stack_t **stack, unsigned int line_number)
 {
 
@@ -57,6 +82,13 @@ void pint_f(stack_t **stack, unsigned int line_number)
 	fprintf(stdout, "%d\n", (*stack)->n);
 }
 
+/**
+ * pop_f - remove the value on the top of th stack
+ * @stack: a pointer to the top of the stack
+ * @line_number: the line number of the instruction
+ *
+ * Return: nothing
+ */
 void pop_f(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;
@@ -70,6 +102,13 @@ void pop_f(stack_t **stack, unsigned int line_number)
 	free(tmp);
 }
 
+/**
+ * swap_f - swap the value on top of the stack and the second value
+ * @stack: a pointer to the top of the stack
+ * @line_number: the line number of the instruction
+ *
+ * Return: nothing
+ */
 void swap_f(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;
@@ -85,20 +124,4 @@ void swap_f(stack_t **stack, unsigned int line_number)
 	tmp->n = (*stack)->n;
 	(*stack)->n = n;
 
-}
-
-void add_f(stack_t **stack, unsigned int line_number)
-{
-	stack_t *tmp;
-	int n;
-
-	if (*stack == NULL || (*stack)->next == NULL)
-	{
-		fprintf(stderr, "%d: can't add, stack too short\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-	tmp = *stack;
-	*stack = (*stack)->next;
-	(*stack)->n = (*stack)->n + tmp->n;
-	free(tmp);
 }

@@ -4,24 +4,26 @@
 #include <unistd.h>
 #include <string.h>
 
-int main(int argc, char**argv)
+/**
+ * main - interprete monty byte code
+ * @argc: the number of argument passed
+ * @argv: the pointer to the arguments passed
+ * Return: 0 success otherwise return 1
+ */
+int main(int argc, char **argv)
 {
 	FILE *fd;
 	stack_t *stack = NULL;
-	int file_access;
-	ssize_t byteread = 0;
+	ssize_t byteread = 0, file_access;
+	size_t inst_size;
 	void (*function)(stack_t **stack, unsigned int line_number) = NULL;
-	instruction_t opcodes[] = {
-		{"pall", pall_f},
-		{"pint", pint_f},
-		{"pop", pop_f},
+	instruction_t opcodes[] = {{"pall", pall_f}, {"pint", pint_f}, {"pop", pop_f},
 		{"swap", swap_f},
 		{"add", add_f},
 		{NULL, NULL}
 	};
 	char *instruc, **commands;
-	size_t inst_size;
-	int line_number, i;
+	unsigned int line_number, i;
 
 	if (argc != 2)
 	{
@@ -35,7 +37,7 @@ int main(int argc, char**argv)
 		exit(EXIT_FAILURE);
 	}
 	fd = fopen(argv[1], "r");
-	if (fd < 0)
+	if (!fd)
 	{
 		write(2, "Could not open the file specified\n", 34);
 		exit(EXIT_FAILURE);
@@ -48,15 +50,14 @@ int main(int argc, char**argv)
 		if (commands)
 		{
 			if (strcmp(commands[0], "push") == 0)
-			{
 
 				push_f(&stack, line_number, commands);
-			}
 			else
 			{
 				for (i = 0; i < (sizeof(opcodes) / sizeof(instruction_t)); i++)
 				{
-					if (strcmp(opcodes[i].opcode, commands[0]) == 0){
+					if (strcmp(opcodes[i].opcode, commands[0]) == 0)
+					{
 						function = opcodes[i].f;
 						break;
 					}
@@ -65,6 +66,7 @@ int main(int argc, char**argv)
 					function(&stack, line_number);
 			}
 		}
-		free(commands);
-	}	
+		free_strings(commands);
+	}
+	return (0);
 }
