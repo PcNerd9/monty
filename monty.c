@@ -12,9 +12,9 @@
  */
 int main(int argc, char **argv)
 {
-	FILE *fd;
+	FILE *fd = NULL;
 	stack_t *stack = NULL;
-	ssize_t byteread = 0, file_access;
+	ssize_t byteread = 0, file_access = 0;
 	size_t inst_size;
 	void (*function)(stack_t **stack, unsigned int line_number) = NULL;
 	instruction_t opcodes[] = {{"pall", pall_f}, {"pint", pint_f}, {"pop", pop_f},
@@ -22,8 +22,8 @@ int main(int argc, char **argv)
 		{"add", add_f},
 		{NULL, NULL}
 	};
-	char *instruc, **commands;
-	unsigned int line_number, i;
+	char *instruc = NULL, **commands = NULL;
+	unsigned int line_number = 0, i;
 
 	if (argc != 2)
 	{
@@ -68,5 +68,8 @@ int main(int argc, char **argv)
 		}
 		free_strings(commands);
 	}
+	free(instruc);
+	fclose(fd);
+	free_stack(&stack);
 	return (0);
 }

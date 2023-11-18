@@ -39,4 +39,5 @@ void swap_f(stack_t **stack, unsigned int line_number);
 void add_f(stack_t **stack, unsigned int line_number);
 int number_of_args(char **);
 void free_strings(char **);
+void free_stack(stack_t **stack);
 #endif
