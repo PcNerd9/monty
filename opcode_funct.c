@@ -18,6 +18,7 @@ void push_f(stack_t **stack, unsigned int line_number, char **commands)
 
 	if (number_args != 2)
 	{
+		free_stack(stack);
 		fprintf(stderr, "%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
@@ -27,6 +28,7 @@ void push_f(stack_t **stack, unsigned int line_number, char **commands)
 	value = atoi(commands[1]);
 	if (value < 0)
 	{
+		free_stack(stack);
 		fprintf(stderr, "%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
@@ -77,7 +79,9 @@ void pint_f(stack_t **stack, unsigned int line_number)
 
 	if (*stack == NULL)
 	{
+		free_stack(stack);
 		fprintf(stderr, "%d: can't pint, stack empty", line_number);
+		exit(EXIT_FAILURE);
 	}
 	fprintf(stdout, "%d\n", (*stack)->n);
 }
@@ -95,7 +99,9 @@ void pop_f(stack_t **stack, unsigned int line_number)
 
 	if (stack == NULL)
 	{
+		free_stack(stack);
 		fprintf(stderr, "%d: can't pop an empty stack", line_number);
+		exit(EXIT_FAILURE);
 	}
 	tmp = *stack;
 	*stack = (*stack)->next;
@@ -116,6 +122,7 @@ void swap_f(stack_t **stack, unsigned int line_number)
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
+		free_stack(stack);
 		fprintf(stderr, "%d: can't swap, stack too short", line_number);
 		exit(EXIT_FAILURE);
 	}
