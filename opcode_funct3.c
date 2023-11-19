@@ -59,6 +59,7 @@ void pstr_f(stack_t **stack, unsigned int  line_number, free_t to_free)
 		free(to_free.instruction);
 		fclose(to_free.fd);
 		fprintf(stderr, "L%d: can't pstr, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
 	}
 	tmp = *stack;
 	while (tmp != NULL)
