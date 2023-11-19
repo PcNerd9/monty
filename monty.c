@@ -18,7 +18,7 @@ int main(int argc, char **argv)
 	size_t inst_size;
 	void (*function)(stack_t **, unsigned int, free_t) = NULL;
 	instruction_t opcodes[] = {{"pall", pall_f}, {"pint", pint_f}, {"pop", pop_f},
-		{"swap", swap_f},
+		{"swap", swap_f}, {"sub", sub_f}, {"div", div_f},
 		{"add", add_f},
 		{"nop", nop_f},
 	};
