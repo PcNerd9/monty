@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 	void (*function)(stack_t **, unsigned int, free_t) = NULL;
 	instruction_t opcodes[] = {{"pall", pall_f}, {"pint", pint_f}, {"pop", pop_f},
 		{"swap", swap_f}, {"sub", sub_f}, {"div", div_f},
-		{"add", add_f},
+		{"add", add_f}, {"mul", mul_f}, {"mod", mod_f},
 		{"nop", nop_f},
 	};
 	unsigned int line_number = 0, i;

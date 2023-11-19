@@ -53,6 +53,8 @@ void add_f(stack_t **stack, unsigned int line_number, free_t to_free);
 void nop_f(stack_t **stack, unsigned int line_number, free_t to_free);
 void sub_f(stack_t **stack, unsigned int line_number, free_t to_free);
 void div_f(stack_t **stack, unsigned int line_number, free_t to_free);
+void mul_f(stack_t **stack, unsigned int line_number, free_t to_free);
+void mod_f(stack_t **stack, unsigned int line_number, free_t to_free);
 int number_of_args(char **);
 void free_strings(char **);
 void free_stack(stack_t **stack);
