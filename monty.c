@@ -20,20 +20,19 @@ int main(int argc, char **argv)
 	instruction_t opcodes[] = {{"pall", pall_f}, {"pint", pint_f}, {"pop", pop_f},
 		{"swap", swap_f},
 		{"add", add_f},
-		{NULL, NULL}
 	};
 	unsigned int line_number = 0, i;
 
 	to_free.instruction = NULL;
 	if (argc != 2)
 	{
-		write(2, "USAGE: monty file\n", 18);
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	file_access = access(argv[1], F_OK);
 	if (file_access == -1)
 	{
-		write(2, "The file does not exit\n", 23);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 	to_free.fd = fopen(argv[1], "r");
@@ -64,9 +63,18 @@ int main(int argc, char **argv)
 						break;
 					}
 				}
-				free_strings(to_free.command);
 				if (function)
 					function(&stack, line_number);
+				else
+				{
+					fprintf(stderr, "%d: unknown instruction %s\n", line_number, to_free.command[0]);
+					free_strings(to_free.command);
+					free(to_free.instruction);
+					free_stack(&stack);
+					fclose(to_free.fd);
+					exit(EXIT_FAILURE);
+				}
+				free_strings(to_free.command);
 			}
 		}
 	}

@@ -1,8 +1,5 @@
-push 5
-push 30
-push 0  
-push 104
 pall
-push 10
+push 1
 pall
-
+push 2
+pall Holberton School:
