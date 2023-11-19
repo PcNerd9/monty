@@ -84,3 +84,22 @@ void rotl_f(stack_t **stack, unsigned int line_number, free_t to_free)
 	*stack = (*stack)->next;
 	tmp->next->next = NULL;
 }
+
+void rotr_f(stack_t **stack, unsigned int line_number, free_t to_free)
+{
+	stack_t *tmp;
+	stack_t *prev;
+	(void)line_number;
+	(void)to_free;
+
+	if (*stack == NULL)
+		return;
+	tmp = *stack;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	tmp->next = *stack;
+	prev = tmp->prev;
+	prev->next = NULL;
+	tmp->prev = NULL;
+	*stack = tmp;
+}	

@@ -21,7 +21,7 @@ int main(int argc, char **argv)
 		{"swap", swap_f}, {"sub", sub_f}, {"div", div_f},
 		{"add", add_f}, {"mul", mul_f}, {"mod", mod_f},
 		{"nop", nop_f}, {"pchar", pchar_f}, {"pstr", pstr_f},
-		{"rotl", rotl_f},
+		{"rotl", rotl_f}, {"rotr", rotr_f},
 	};
 	unsigned int line_number = 0, i;
 
