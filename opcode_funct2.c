@@ -29,13 +29,32 @@ void add_f(stack_t **stack, unsigned int line_number, free_t to_free)
 	(*stack)->n = (*stack)->n + tmp->n;
 	free(tmp);
 }
+/**
+ * nop_f - do nothing
+ * @stack: the pointer to the top of the stack
+ * @line_number: the line number of instruction
+ * @to_free: spaces to free before program exit
+ *
+ * Return: nothing
+ */
+
 void nop_f(stack_t **stack, unsigned int line_number, free_t to_free)
 {
 	(void)stack;
 	(void)line_number;
 	(void)to_free;
-	return;
 }
+
+/**
+ * sub_f - subtract the top element of the stack from the
+ * second top element of the stack
+ * @stack: the pointer to the top of the stack
+ * @line_number: the line number of instruction
+ * @to_free: spaces to free before program exit
+ *
+ * Return: nothing
+ */
+
 void sub_f(stack_t **stack, unsigned int line_number, free_t to_free)
 {
 	stack_t *tmp;
@@ -54,6 +73,16 @@ void sub_f(stack_t **stack, unsigned int line_number, free_t to_free)
 	(*stack)->n = (*stack)->n - tmp->n;
 	free(tmp);
 }
+
+/**
+ * div_f - divid the second top element of the stack
+ * by the top element of the stack
+ * @stack: the pointer to the top of the stack
+ * @line_number: the line number of instruction
+ * @to_free: spaces to free before program exit
+ *
+ * Return: nothing
+ */
 
 void div_f(stack_t **stack, unsigned int line_number, free_t to_free)
 {
@@ -76,6 +105,16 @@ void div_f(stack_t **stack, unsigned int line_number, free_t to_free)
 	(*stack)->n = (*stack)->n / tmp->n;
 	free(tmp);
 }
+
+/**
+ * mul_f - multiplies the second top element of the stack
+ * with the top element of the stack
+ * @stack: the pointer to the top of the stack
+ * @line_number: the line number of instruction
+ * @to_free: spaces to free before program exit
+ *
+ * Return: nothing
+ */
 
 void mul_f(stack_t **stack, unsigned int line_number, free_t to_free)
 {
