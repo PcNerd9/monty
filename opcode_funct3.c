@@ -92,7 +92,7 @@ void rotr_f(stack_t **stack, unsigned int line_number, free_t to_free)
 	(void)line_number;
 	(void)to_free;
 
-	if (*stack == NULL)
+	if (*stack == NULL || (*stack)->next == NULL)
 		return;
 	tmp = *stack;
 	while (tmp->next != NULL)
