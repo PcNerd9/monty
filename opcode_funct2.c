@@ -16,6 +16,7 @@ void add_f(stack_t **stack, unsigned int line_number)
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
+		free_stack(stack);
 		fprintf(stderr, "%d: can't add, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}

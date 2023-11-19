@@ -6,29 +6,35 @@
  * push_f - push a value to the stack
  * @stack: a pointer to the stack
  * @line_number: the line number of the instruction
- * @commands: the pointer to the instruction
+ * @to_free: a structure that contain all spaces to free
  *
  * Return: nothing
  */
-void push_f(stack_t **stack, unsigned int line_number, char **commands)
+void push_f(stack_t **stack, unsigned int line_number, free_t to_free)
 {
 	stack_t *new_node;
 	int value;
-	int number_args = number_of_args(commands);
+	int number_args = number_of_args(to_free.command);
 
 	if (number_args != 2)
 	{
+		free_strings(to_free.command);
 		free_stack(stack);
+		fclose(to_free.fd);
+		free(to_free.instruction);
 		fprintf(stderr, "%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	new_node = (stack_t *)malloc(sizeof(stack_t));
 	if (!new_node)
 		return;
-	value = atoi(commands[1]);
+	value = atoi(to_free.command[1]);
 	if (value < 0)
 	{
+		free_strings(to_free.command);
 		free_stack(stack);
+		free(to_free.instruction);
+		fclose(to_free.fd);
 		fprintf(stderr, "%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
