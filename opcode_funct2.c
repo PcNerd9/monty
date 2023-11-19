@@ -61,10 +61,10 @@ void div_f(stack_t **stack, unsigned int line_number, free_t to_free)
 
 	if (*stack == NULL || (*stack)->next == NULL || (*stack)->n == 0)
 	{
-		if ((*stack)->n == 0)
-			fprintf(stderr, "L%d: division by zero\n", line_number);
-		else
+		if (*stack == NULL || (*stack)->next == NULL)
 			fprintf(stderr, "L%d: can't div, stack too short\n", line_number);
+		else
+			fprintf(stderr, "L%d: division by zero\n", line_number);
 		free_strings(to_free.command);
 		free(to_free.instruction);
 		fclose(to_free.fd);
