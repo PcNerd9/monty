@@ -47,7 +47,7 @@ int main(int argc, char **argv)
 		line_number++;
 		to_free.instruction[byteread - 1] = '\0';
 		to_free.command = split_words(to_free.instruction);
-		if (to_free.command)
+		if (to_free.command && to_free.command[0][0] != '#')
 		{
 			if (strcmp(to_free.command[0], "push") == 0)
 			{

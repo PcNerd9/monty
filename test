@@ -1,4 +1,6 @@
 push 12
-push 0
+#push 400
+#pall
+push 10
 mod Holberton
 pall
