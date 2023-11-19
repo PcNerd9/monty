@@ -22,7 +22,7 @@ void push_f(stack_t **stack, unsigned int line_number, free_t to_free)
 		free_stack(stack);
 		fclose(to_free.fd);
 		free(to_free.instruction);
-		fprintf(stderr, "%d: usage: push integer\n", line_number);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	new_node = (stack_t *)malloc(sizeof(stack_t));
@@ -35,7 +35,7 @@ void push_f(stack_t **stack, unsigned int line_number, free_t to_free)
 		free_stack(stack);
 		free(to_free.instruction);
 		fclose(to_free.fd);
-		fprintf(stderr, "%d: usage: push integer\n", line_number);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	new_node->n = value;
@@ -92,7 +92,7 @@ void pint_f(stack_t **stack, unsigned int line_number, free_t to_free)
 		free(to_free.instruction);
 		fclose(to_free.fd);
 		free_stack(stack);
-		fprintf(stderr, "%d: can't pint, stack empty\n", line_number);
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	fprintf(stdout, "%d\n", (*stack)->n);
@@ -110,13 +110,13 @@ void pop_f(stack_t **stack, unsigned int line_number, free_t to_free)
 {
 	stack_t *tmp;
 
-	if (stack == NULL)
+	if (stack == NULL || *stack == NULL)
 	{
 		free_stack(stack);
 		free_strings(to_free.command);
 		free(to_free.instruction);
 		fclose(to_free.fd);
-		fprintf(stderr, "%d: can't pop an empty stack", line_number);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	tmp = *stack;

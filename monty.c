@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 	to_free.fd = fopen(argv[1], "r");
 	if (!to_free.fd)
 	{
-		write(2, "Could not open the file specified\n", 34);
+		fprintf(stderr, "Could not open the file specified\n");
 		exit(EXIT_FAILURE);
 	}
 	while ((byteread = getline(&to_free.instruction, &inst_size, to_free.fd)) > 0)
@@ -67,7 +67,7 @@ int main(int argc, char **argv)
 					function(&stack, line_number, to_free);
 				else
 				{
-					fprintf(stderr, "%d: unknown instruction %s\n",
+					fprintf(stderr, "L%d: unknown instruction %s\n",
 							line_number, to_free.command[0]);
 					free_strings(to_free.command);
 					free(to_free.instruction);
