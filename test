@@ -1,5 +1,4 @@
-push 1
-push 10
-push 5
-mod
+push 12
+push 0
+mod Holberton
 pall

@@ -29,7 +29,7 @@ void push_f(stack_t **stack, unsigned int line_number, free_t to_free)
 	if (!new_node)
 		return;
 	value = atoi(to_free.command[1]);
-	if (value == 0 && ('0' - 48) == 0)
+	if (value == 0 && ('0' - 48) != 0)
 	{
 		free_strings(to_free.command);
 		free_stack(stack);
