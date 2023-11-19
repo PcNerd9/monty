@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 	stack_t *stack = NULL;
 	ssize_t byteread = 0, file_access = 0;
 	size_t inst_size;
-	void (*function)(stack_t **stack, unsigned int line_number) = NULL;
+	void (*function)(stack_t **, unsigned int, free_t) = NULL;
 	instruction_t opcodes[] = {{"pall", pall_f}, {"pint", pint_f}, {"pop", pop_f},
 		{"swap", swap_f},
 		{"add", add_f},
@@ -64,7 +64,7 @@ int main(int argc, char **argv)
 					}
 				}
 				if (function)
-					function(&stack, line_number);
+					function(&stack, line_number, to_free);
 				else
 				{
 					fprintf(stderr, "%d: unknown instruction %s\n",

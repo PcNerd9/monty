@@ -57,15 +57,17 @@ void push_f(stack_t **stack, unsigned int line_number, free_t to_free)
  * pall_f - print all the value on the stack
  * @stack: the pointer to the top of the stack
  * @line_number: the line number of the instruction
+ * @to_free: a struct of space to free before exiting program
  *
  * Return: nothing
  */
-void pall_f(stack_t **stack, unsigned int line_number)
+void pall_f(stack_t **stack, unsigned int line_number, free_t to_free)
 {
 	stack_t *tmp;
 
 	tmp = *stack;
 	(void)line_number;
+	(void)to_free;
 	while (tmp)
 	{
 		fprintf(stdout, "%d\n", tmp->n);
@@ -77,16 +79,20 @@ void pall_f(stack_t **stack, unsigned int line_number)
  * pint_f - print only the value on top of the stack
  * @stack: a pointer to the top of the stack
  * @line_number: the line number of the instruction
+ * @to_free: a struct to the space to be freed before exit program
  *
  * Return: nothing
  */
-void pint_f(stack_t **stack, unsigned int line_number)
+void pint_f(stack_t **stack, unsigned int line_number, free_t to_free)
 {
 
 	if (*stack == NULL)
 	{
+		free_strings(to_free.command);
+		free(to_free.instruction);
+		fclose(to_free.fd);
 		free_stack(stack);
-		fprintf(stderr, "%d: can't pint, stack empty", line_number);
+		fprintf(stderr, "%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	fprintf(stdout, "%d\n", (*stack)->n);
@@ -96,16 +102,20 @@ void pint_f(stack_t **stack, unsigned int line_number)
  * pop_f - remove the value on the top of th stack
  * @stack: a pointer to the top of the stack
  * @line_number: the line number of the instruction
+ * @to_free: the struct to space to be free before program exit
  *
  * Return: nothing
  */
-void pop_f(stack_t **stack, unsigned int line_number)
+void pop_f(stack_t **stack, unsigned int line_number, free_t to_free)
 {
 	stack_t *tmp;
 
 	if (stack == NULL)
 	{
 		free_stack(stack);
+		free_strings(to_free.command);
+		free(to_free.instruction);
+		fclose(to_free.fd);
 		fprintf(stderr, "%d: can't pop an empty stack", line_number);
 		exit(EXIT_FAILURE);
 	}
@@ -118,16 +128,20 @@ void pop_f(stack_t **stack, unsigned int line_number)
  * swap_f - swap the value on top of the stack and the second value
  * @stack: a pointer to the top of the stack
  * @line_number: the line number of the instruction
+ * @to_free: the struct to space to be freed before program exit
  *
  * Return: nothing
  */
-void swap_f(stack_t **stack, unsigned int line_number)
+void swap_f(stack_t **stack, unsigned int line_number, free_t to_free)
 {
 	stack_t *tmp;
 	int n;
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
+		free_strings(to_free.command);
+		free(to_free.instruction);
+		fclose(to_free.fd);
 		free_stack(stack);
 		fprintf(stderr, "%d: can't swap, stack too short", line_number);
 		exit(EXIT_FAILURE);
