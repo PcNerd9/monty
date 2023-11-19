@@ -52,15 +52,9 @@ void pchar_f(stack_t **stack, unsigned int line_number, free_t to_free)
 void pstr_f(stack_t **stack, unsigned int  line_number, free_t to_free)
 {
 	stack_t *tmp;
-	if (*stack == NULL)
-	{
-		free_strings(to_free.command);
-		free_stack(stack);
-		free(to_free.instruction);
-		fclose(to_free.fd);
-		fprintf(stderr, "L%d: can't pstr, stack empty\n", line_number);
-		exit(EXIT_FAILURE);
-	}
+	(void)to_free;
+	(void)line_number;
+
 	tmp = *stack;
 	while (tmp != NULL)
 	{
