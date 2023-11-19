@@ -56,6 +56,7 @@ void div_f(stack_t **stack, unsigned int line_number, free_t to_free);
 void mul_f(stack_t **stack, unsigned int line_number, free_t to_free);
 void mod_f(stack_t **stack, unsigned int line_number, free_t to_free);
 void pchar_f(stack_t **stack, unsigned int line_number, free_t to_free);
+void pstr_f(stack_t **stack, unsigned int line_number, free_t to_free);
 
 int number_of_args(char **);
 void free_strings(char **);

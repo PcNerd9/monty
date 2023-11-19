@@ -49,3 +49,25 @@ void pchar_f(stack_t **stack, unsigned int line_number, free_t to_free)
 	}
 	fprintf(stdout, "%c\n", (*stack)->n);
 }
+void pstr_f(stack_t **stack, unsigned int  line_number, free_t to_free)
+{
+	stack_t *tmp;
+	if (*stack == NULL)
+	{
+		free_strings(to_free.command);
+		free_stack(stack);
+		free(to_free.instruction);
+		fclose(to_free.fd);
+		fprintf(stderr, "L%d: can't pstr, stack empty\n", line_number);
+	}
+	tmp = *stack;
+	while (tmp != NULL)
+	{
+		if (tmp->n < 32 || tmp->n > 126)
+			break;
+		fprintf(stdout, "%c", tmp->n);
+		tmp = tmp->next;
+	}
+	fprintf(stdout, "\n");
+
+}
