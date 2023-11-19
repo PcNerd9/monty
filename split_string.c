@@ -85,6 +85,12 @@ int number_of_args(char **command)
 	return (number_args);
 }
 
+/**
+ * free_stack - free the stack
+ * @stack: a pointer to the head of the stack
+ *
+ * Return: nothing
+ */
 void free_stack(stack_t **stack)
 {
 	stack_t *tmp;

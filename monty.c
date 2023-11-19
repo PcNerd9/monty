@@ -67,7 +67,8 @@ int main(int argc, char **argv)
 					function(&stack, line_number);
 				else
 				{
-					fprintf(stderr, "%d: unknown instruction %s\n", line_number, to_free.command[0]);
+					fprintf(stderr, "%d: unknown instruction %s\n",
+							line_number, to_free.command[0]);
 					free_strings(to_free.command);
 					free(to_free.instruction);
 					free_stack(&stack);
