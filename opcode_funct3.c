@@ -66,3 +66,21 @@ void pstr_f(stack_t **stack, unsigned int  line_number, free_t to_free)
 	fprintf(stdout, "\n");
 
 }
+
+void rotl_f(stack_t **stack, unsigned int line_number, free_t to_free)
+{
+	stack_t *tmp;
+	(void)to_free;
+	(void)line_number;
+
+	if (*stack == NULL)
+		return;
+	tmp = *stack;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+
+	tmp->next = *stack;
+	(*stack)->prev = tmp;
+	*stack = (*stack)->next;
+	tmp->next->next = NULL;
+}
