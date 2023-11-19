@@ -52,7 +52,6 @@ int main(int argc, char **argv)
 			if (strcmp(to_free.command[0], "push") == 0)
 			{
 				push_f(&stack, line_number, to_free);
-				free_strings(to_free.command);
 			}
 			else
 			{
@@ -76,9 +75,9 @@ int main(int argc, char **argv)
 					fclose(to_free.fd);
 					exit(EXIT_FAILURE);
 				}
-				free_strings(to_free.command);
 			}
 		}
+		free_strings(to_free.command);
 	}
 	free(to_free.instruction);
 	fclose(to_free.fd);
