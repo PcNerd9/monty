@@ -1,6 +1,6 @@
-      #push 12
-                       #push 400
- #pall
-         #push 10
-                #mod Holberton
-   #pall
+push 46
+push 67
+pchar
+push 10
+mod Holberton
+pall
