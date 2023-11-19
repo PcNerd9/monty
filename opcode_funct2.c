@@ -21,7 +21,7 @@ void add_f(stack_t **stack, unsigned int line_number, free_t to_free)
 		free(to_free.instruction);
 		fclose(to_free.fd);
 		free_stack(stack);
-		fprintf(stderr, "%d: can't add, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	tmp = *stack;
@@ -29,4 +29,10 @@ void add_f(stack_t **stack, unsigned int line_number, free_t to_free)
 	(*stack)->n = (*stack)->n + tmp->n;
 	free(tmp);
 }
-
+void nop_f(stack_t **stack, unsigned int line_number, free_t to_free)
+{
+	(void)stack;
+	(void)line_number;
+	(void)to_free;
+	return
+}

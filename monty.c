@@ -20,6 +20,7 @@ int main(int argc, char **argv)
 	instruction_t opcodes[] = {{"pall", pall_f}, {"pint", pint_f}, {"pop", pop_f},
 		{"swap", swap_f},
 		{"add", add_f},
+		{"nop", nop_f},
 	};
 	unsigned int line_number = 0, i;
 
