@@ -44,7 +44,7 @@ opcode_funct2.c        # Implements additional opcodes
 opcode_funct3.c        # Implements more complex opcodes
 split_string.c         # Helper functions for parsing Monty bytecode
 test                   # Test cases for the interpreter
-
+```
 
 ## Usage Example
 
@@ -81,4 +81,4 @@ pint
 ```bash
 gcc -Wall -Werror -Wextra -pedantic *.c -o monty
 ./monty <bytecode_file.m>
-
+```
